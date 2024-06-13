@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="parool" class="form-label">parool</label>
             <input type="password" class="form-control" id="parool" name="parool" required>
         </div>
-        <button type="submit" class="btn btn-primary">logii sisse</button>
+        <button type="submit" class="btn btn-outline-info">logii sisse</button>
     </form>
 </div>
 <script src="path/to/your/js/bootstrap.bundle.min.js"></script>

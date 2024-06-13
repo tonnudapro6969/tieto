@@ -48,23 +48,23 @@ $result = $sqluhendus->query("SELECT * FROM kohvikud");
 <h1>tere tulemast admin leht</h1>
     <a href="lisamine.php" class="btn">lisa uus kohvikd</a>
 <?php
-$sort_column = isset($_GET['sort']) ? $_GET['sort'] : 'restaurant_name';
-$sort_order = isset($_GET['order']) && $_GET['order'] == 'desc' ? 'DESC' : 'ASC';
+$sorteeri = isset($_GET['sort']) ? $_GET['sort'] : 'restaurant_name';
+$sorteerijarje = isset($_GET['order']) && $_GET['order'] == 'desc' ? 'DESC' : 'ASC';
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$limit = 10;
+$limit = 1000;
 $offset = ($page - 1) * $limit;
 
 $sql = "SELECT * FROM kohvikud 
         WHERE restaurant_name LIKE '%$search%' 
-        ORDER BY $sort_column $sort_order 
+        ORDER BY $sorteeri $sorteerijarje 
         LIMIT $limit OFFSET $offset";
 $result = $sqluhendus->query($sql);
 
-$total_sql = "SELECT COUNT(*) FROM kohvikud WHERE restaurant_name LIKE '%$search%'";
-$total_result = $sqluhendus->query($total_sql);
-$total_rows = $total_result->fetch_row()[0];
-$total_pages = ceil($total_rows / $limit);
+$sqlresto = "SELECT COUNT(*) FROM kohvikud WHERE restaurant_name LIKE '%$search%'";
+$koikas = $sqluhendus->query($sqlresto);
+$rowasi = $koikas->fetch_row()[0];
+$koiklehed = ceil($rowasi / $limit);
 ?>
 <hr>
 <form method="GET">

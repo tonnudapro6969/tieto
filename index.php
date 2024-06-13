@@ -50,7 +50,7 @@ $total_pages = ceil($total_rows / $limit);
 
 <form method="GET">
     <input type="text" name="search" value="<?php echo htmlspecialchars($search); ?>">
-    <button type="submit">Otsi</button>
+    <button type="submit" class="btn btn-outline-info">Otsi</button>
 </form>
 
 <table class="table">
